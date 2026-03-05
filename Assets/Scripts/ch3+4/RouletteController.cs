@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // 加上這行才能控制 UI 文字
+using TMPro;
 
 public class RouletteController : MonoBehaviour
 {
     float rotSpeed = 0;
-    public Text resultText; // 在 Inspector 把畫面的 Text 拖進來
+    public TMP_Text resultText; // 在 Inspector 把畫面的 Text 拖進來
     bool isStopped = true;  // 用來判斷是否已經停止
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class RouletteController : MonoBehaviour
         else if (angle >= 150 && angle < 210) result = "小吉";
         else if (angle >= 210 && angle < 270) result = "末吉";
         else if (angle >= 270 && angle < 330) result = "中吉";
-        else if (angle >= 330 && angle < 30) result = "凶";
+        else if (angle >= 330 || angle < 30) result = "凶";
         else result = "大凶";
 
         Debug.Log("結果是：" + result);
@@ -58,7 +59,7 @@ public class RouletteController : MonoBehaviour
         // 顯示在 UI 上
         if (resultText != null)
         {
-            resultText.text = "結果：" + result;
+            resultText.text = result;
         }
     }
 }
