@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gamedirector : MonoBehaviour
+public class GameDirector : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject hpGauge;
     void Start()
     {
-        this.hpGauge = GameObject.Find("hpGauge");  
+        this.hpGauge = GameObject.Find("hpGauge");
     }
-
-    // Update is called once per frame
-    public void DecreseHp()
+    public void DecreaseHp()
     {
         this.hpGauge.GetComponent<Image>().fillAmount -= 0.1f;
+        if (hpGauge.GetComponent<Image>().fillAmount == 0)
+        {
+            hpGauge.GetComponent<Image>().fillAmount = 1;
+        }
     }
+    // Update is called once per frame
+
 }

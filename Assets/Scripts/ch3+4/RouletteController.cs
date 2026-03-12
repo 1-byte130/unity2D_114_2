@@ -10,6 +10,7 @@ public class RouletteController : MonoBehaviour
     public TMP_Text resultText; // 在 Inspector 把畫面的 Text 拖進來
     bool isStopped = true;  // 用來判斷是否已經停止
     // Start is called before the first frame update
+    public ParticleSystem confettiFX; // <--- 新增：在 Inspector 拖入你的亮片特效物件
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -45,6 +46,18 @@ public class RouletteController : MonoBehaviour
         float angle = transform.eulerAngles.z;
         string result = "";
 
+        if (angle >= 30 && angle < 90)
+        {
+            result = "大吉";
+            confettiFX.Play();
+            //PlayEffect(); // <--- 只有大吉才播特效，或者你也可以每個獎項都播
+        }
+        if (angle >= 90 && angle < 120)
+        {
+            result = "大兇";
+            confettiFX.Play();
+            //PlayEffect(); // <--- 只有大吉才播特效，或者你也可以每個獎項都播
+        }
         // 3. 根據角度判斷區塊 (6個區塊，每塊60度)
         // 注意：Unity 角度 0 是右邊，逆時針增加
         if (angle >= 30 && angle < 90) result = "大吉";
@@ -60,6 +73,13 @@ public class RouletteController : MonoBehaviour
         if (resultText != null)
         {
             resultText.text = result;
+        }
+    }
+    void PlayEffect()
+    {
+        if (confettiFX != null)
+        {
+            confettiFX.Play(); // 執行粒子發射
         }
     }
 }
