@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class PlayController : MonoBehaviour
 {
     Rigidbody2D cat;
     Animator animator;
+    public TextMeshProUGUI SurvivalTimeText;
     float jumpForce = 680.0f;
     float walkForce = 15.0f;
     float maxWalked = 2.0f;
@@ -30,8 +32,8 @@ public class PlayController : MonoBehaviour
         int key = 0;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
         if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
-        if (Input.acceleration.x>this.threshold) key = 1;
-        if (Input.acceleration.x <-this.threshold) key = -1;
+        //if (Input.acceleration.x>this.threshold) key = 1;
+        //if (Input.acceleration.x <-this.threshold) key = -1;
         float speedx = Mathf.Abs(cat.velocity.x);
         if(speedx < maxWalked)
         {
@@ -51,11 +53,19 @@ public class PlayController : MonoBehaviour
         {
             SceneManager.LoadScene("ch6");
         }
+        if (Input.GetKey("escape")) { SceneManager.LoadScene("ch5+6"); }
+        if (Input.GetMouseButtonDown(0) && Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("ch5+6");
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("²×ÂI");
-        SceneManager.LoadScene("ch5+6");
+        Debug.Log("²×ÂI");        
+        SurvivalTimeText.text = "success"+ gamedirector.elapsedTime;
+        Time.timeScale = 0f;
+        
     }
 }

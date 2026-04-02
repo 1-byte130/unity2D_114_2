@@ -21,13 +21,14 @@ public class GameDirector : MonoBehaviour
     }
     void Update()
     {
+        
         elapsedTime += Time.deltaTime;
         SurvivalTimeText.text = elapsedTime.ToString("F2");
         // 3. §ó·s¤¶­±
         if (elapsedTime >= 5)
         {
             Time.timeScale = 0f;
-            if (hpGauge.fillAmount > 0.6f)
+            if (hpGauge.fillAmount > 0.65f)
             {
                 SurvivalTimeText.text = "success";
                 if (Input.GetMouseButtonDown(0)) SceneManager.LoadScene("ch6");
@@ -42,6 +43,10 @@ public class GameDirector : MonoBehaviour
                     elapsedTime=0;
                 }
             }   
+        }
+        if (Input.GetKey("escape")) {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("ch5+6"); 
         }
     }    
    

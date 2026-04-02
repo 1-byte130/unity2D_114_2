@@ -14,15 +14,15 @@ public class menu : MonoBehaviour
     {
         SceneManager.LoadScene("ch6");
     }
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("ch5");
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            SceneManager.LoadScene("ch6");
-        }
-    }
+    //private void Update()
+    //{
+        //if(Input.GetMouseButtonDown(0))
+        //{
+            //SceneManager.LoadScene("ch5");
+        //}
+        //if (Input.GetMouseButtonDown(1))
+       //{
+           // SceneManager.LoadScene("ch6");
+       // }
+   // }
 }
