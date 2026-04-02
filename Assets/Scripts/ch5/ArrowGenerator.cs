@@ -12,6 +12,8 @@ public class ArrowGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.span -= 0.5f * Time.deltaTime;
+        this.span = Mathf.Max(0.2f, this.span);
         this.delta += Time.deltaTime;
         if (this.delta > this.span)
         {
