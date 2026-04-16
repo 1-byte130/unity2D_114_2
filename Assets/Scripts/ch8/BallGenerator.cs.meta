@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: db725d473b23f4f40a40f669358370ab
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ball: {instanceID: 0}
+  - playerPaddle: {instanceID: 0}
+  - computerPaddle: {instanceID: 0}
+  - playerScoreText: {instanceID: 0}
+  - computerScoreText: {instanceID: 0}
+  - BallPrfab: {fileID: 9199287626867038258, guid: 7580f2cd39dfbf442bb50492317310eb, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
