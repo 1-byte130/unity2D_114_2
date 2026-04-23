@@ -2,17 +2,18 @@
 using UnityEngine.UI;
 
 [DefaultExecutionOrder(-1)]
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
-    [SerializeField] private Ball ball;
-    [SerializeField] private Paddle playerPaddle;
-    [SerializeField] private Paddle computerPaddle;
+    [SerializeField] private Ball1 ball;
+    [SerializeField] private GameObject BallPrfab;
+    [SerializeField] private Paddle1 playerPaddle;
+    [SerializeField] private Paddle1 computerPaddle;
     [SerializeField] private Text playerScoreText;
     [SerializeField] private Text computerScoreText;
 
     private int playerScore;
     private int computerScore;
-    public static bool isNewRoundCalled = false;
+    private int additionalBalls=0;
 
     private void Start()
     {
@@ -35,10 +36,11 @@ public class GameManager : MonoBehaviour
 
     public void NewRound()
     {
-        isNewRoundCalled = true;
         playerPaddle.ResetPosition();
         computerPaddle.ResetPosition();
-        //ball.ResetPosition();
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
+        foreach(GameObject a in balls) Destroy(a);
+        ball.ResetPosition();
 
         CancelInvoke();
         Invoke(nameof(StartRound), 1f);
@@ -47,6 +49,16 @@ public class GameManager : MonoBehaviour
     private void StartRound()
     {
         ball.AddStartingForce();
+        for (int i = 0; i < additionalBalls; i++) 
+        {
+            GameObject go = Instantiate(BallPrfab);
+            int px = Random.Range(-4, 4);
+            int py=Random.Range(-1, 1);
+            go.transform.position=new Vector3(px, py, 0);
+            Ball1 ballscript=go.GetComponent<Ball1>();
+            ballscript.AddStartingForce();
+        }
+        additionalBalls++;
     }
 
     public void OnPlayerScored()
@@ -72,5 +84,6 @@ public class GameManager : MonoBehaviour
         computerScore = score;
         computerScoreText.text = score.ToString();
     }
+
 
 }

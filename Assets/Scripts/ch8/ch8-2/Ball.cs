@@ -5,7 +5,7 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    public float baseSpeed = 5f;
+    public float baseSpeed = 1f;
     public float maxSpeed = Mathf.Infinity;
     public float currentSpeed { get; set; }
 
@@ -32,7 +32,11 @@ public class Ball : MonoBehaviour
 
         // Apply the initial force and set the current speed
         Vector2 direction = new Vector2(x, y).normalized;
-        rb.AddForce(direction * baseSpeed, ForceMode2D.Impulse);
+        if (Paddle.useDynamicBounce)
+        {
+            float speedMultiplier = 2f;
+            rb.AddForce(direction * (baseSpeed * speedMultiplier), ForceMode2D.Impulse);
+        }
         currentSpeed = baseSpeed;
     }
 
