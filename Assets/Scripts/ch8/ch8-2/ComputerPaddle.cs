@@ -12,9 +12,12 @@ public class ComputerPaddle : Paddle
         if (ball.velocity.x > 0f)
         {
             // Move the paddle in the direction of the ball to track it
-            if (ball.position.y > rb.position.y) {
+            if (ball.position.y > rb.position.y)
+            {
                 rb.AddForce(Vector2.up * speed);
-            } else if (ball.position.y < rb.position.y) {
+            }
+            else if (ball.position.y < rb.position.y)
+            {
                 rb.AddForce(Vector2.down * speed);
             }
         }
@@ -22,9 +25,12 @@ public class ComputerPaddle : Paddle
         {
             // Move towards the center of the field and idle there until the
             // ball starts coming towards the paddle again
-            if (rb.position.y > 0f) {
+            if (rb.position.y > 0f)
+            {
                 rb.AddForce(Vector2.down * speed);
-            } else if (rb.position.y < 0f) {
+            }
+            else if (rb.position.y < 0f)
+            {
                 rb.AddForce(Vector2.up * speed);
             }
         }

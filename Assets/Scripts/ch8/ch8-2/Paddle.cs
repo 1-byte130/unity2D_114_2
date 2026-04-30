@@ -7,7 +7,7 @@ public abstract class Paddle : MonoBehaviour
 
     public float speed = 8f;
     [Tooltip("Changes how the ball bounces off the paddle depending on where it hits the paddle. The further from the center of the paddle, the steeper the bounce angle.")]
-    public static bool useDynamicBounce = false;
+    public bool useDynamicBounce = false;
 
     private void Awake()
     {
